@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof (AudioSource))]
 public class AudioManager : MonoBehaviour {
 
 	//this contains the menu clip
@@ -9,10 +10,9 @@ public class AudioManager : MonoBehaviour {
 	//and this all the other clips
 	public AudioClip [] audioClip;
 
-	[RequireComponent(typeof (AudioSource))]
 	void Start () 
 	{
-		audio.loop = 1;
+		audio.loop = true;
 		if (Application.loadedLevel == 0)
 			audio.Play();
 		else
