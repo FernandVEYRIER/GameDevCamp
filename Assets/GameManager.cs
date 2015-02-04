@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
@@ -8,18 +9,23 @@ public class GameManager : MonoBehaviour {
 
 	public GameObject canvasPause;
 	public GameObject canvasVictory;
+	public GameObject canvasPlaying;
 
+	public Text levelText;
+	int score = 0;
 	// Use this for initialization
 	void Start () 
 	{
 		isPlaying = true;
 		canvasPause.SetActive(false);
 		canvasVictory.SetActive(false);
+		levelText.text = "Level " + Application.loadedLevel.ToString();
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+
 		//sets pause
 		if (Input.GetButtonDown("Pause"))
 		{
@@ -27,5 +33,22 @@ public class GameManager : MonoBehaviour {
 			isPlaying = !isPlaying;
 			Time.timeScale = (Time.timeScale == 1) ? 0 : 1;
 		}
+	}
+
+	public void victory()
+	{
+		isPlaying = false;
+		canvasPause.SetActive(false);
+		canvasVictory.SetActive(true);
+	}
+
+	public void OnButtonReload()
+	{
+		Application.LoadLevel(Application.loadedLevel);
+	}
+
+	public void OnButtonMenu()
+	{
+		Application.LoadLevel(0);
 	}
 }
