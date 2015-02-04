@@ -26,11 +26,14 @@ public class GameManager : MonoBehaviour {
 		levelText.text = "Level " + Application.loadedLevel.ToString();
 	}
 	
-	// Update is called once per frame
 	void Update () 
 	{
+
+		if (Input.GetKeyUp(KeyCode.B))
+			Victory();
+
 		//sets pause
-		if (Input.GetButtonDown("Pause"))
+		if (Input.GetButtonDown("Pause") && !canvasDeath.activeSelf && !canvasVictory.activeSelf)
 		{
 			canvasPause.SetActive(!canvasPause.activeSelf);
 			isPlaying = !isPlaying;
@@ -64,5 +67,11 @@ public class GameManager : MonoBehaviour {
 	public void OnButtonMenu()
 	{
 		Application.LoadLevel(0);
+	}
+
+	public void OnButtonWin()
+	{
+		if (Application.loadedLevel + 1 <= Application.levelCount)
+			Application.LoadLevel(Application.loadedLevel + 1);
 	}
 }
