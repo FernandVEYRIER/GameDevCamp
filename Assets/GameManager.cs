@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour {
 		isPlaying = true;
 		canvasPause.SetActive(false);
 		canvasVictory.SetActive(false);
+		canvasPlaying.SetActive(true);
 		levelText.text = "Level " + Application.loadedLevel.ToString();
 	}
 	
@@ -37,7 +38,9 @@ public class GameManager : MonoBehaviour {
 
 	public void victory()
 	{
+		score += 1000;
 		isPlaying = false;
+		canvasPlaying.SetActive(false);
 		canvasPause.SetActive(false);
 		canvasVictory.SetActive(true);
 	}
