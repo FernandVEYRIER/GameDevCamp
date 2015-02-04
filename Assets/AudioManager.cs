@@ -21,11 +21,14 @@ public class AudioManager : MonoBehaviour {
 	
 	IEnumerator playSongs()
 	{
-		foreach(AudioClip clip in audioClip)
+		while (true)
 		{
-			audio.clip = clip;
-			audio.Play();
-			yield return new WaitForSeconds(audio.clip.length);
+			foreach(AudioClip clip in audioClip)
+			{
+				audio.clip = clip;
+				audio.Play();
+				yield return new WaitForSeconds(audio.clip.length);
+			}
 		}
 	}
 }
