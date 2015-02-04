@@ -15,9 +15,31 @@ public class GameManager : MonoBehaviour {
 
 	public Text levelText;
 	int score = 0;
+	int coins = 0;
+
+	void Awake()
+	{
+		//checks the scene in order to delete every redundant game managers
+		DontDestroyOnLoad(this.gameObject);
+		GameObject [] gm = GameObject.FindGameObjectsWithTag("GameManager");
+		if (gm.Length > 1)
+		{
+			foreach (GameObject go in gm)
+			{
+				if (go.gameObject != this.gameObject)
+					Destroy(go.gameObject);
+			}
+		}
+	}
 
 	void Start () 
 	{
+		//resets score if needed
+		if (Application.loadedLevel == 1)
+		{
+			score = 0;
+		}
+		coins = 0;
 		isPlaying = true;
 		canvasPause.SetActive(false);
 		canvasVictory.SetActive(false);
