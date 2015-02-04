@@ -7,13 +7,14 @@ public class GameManager : MonoBehaviour {
 	//can be acessed from everywhere
 	public static bool isPlaying;
 
+	//get canvas
 	public GameObject canvasPause;
 	public GameObject canvasVictory;
 	public GameObject canvasPlaying;
 
 	public Text levelText;
 	int score = 0;
-	// Use this for initialization
+
 	void Start () 
 	{
 		isPlaying = true;
@@ -26,7 +27,6 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-
 		//sets pause
 		if (Input.GetButtonDown("Pause"))
 		{
