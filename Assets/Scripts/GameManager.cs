@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject canvasPause;
 	public GameObject canvasVictory;
 	public GameObject canvasPlaying;
+	public GameObject canvasDeath;
 
 	public Text levelText;
 	int score = 0;
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour {
 		canvasPause.SetActive(false);
 		canvasVictory.SetActive(false);
 		canvasPlaying.SetActive(true);
+		canvasDeath.SetActive(false);
 		levelText.text = "Level " + Application.loadedLevel.ToString();
 	}
 	
@@ -36,13 +38,22 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	public void victory()
+	public void Victory()
 	{
 		score += 1000;
 		isPlaying = false;
 		canvasPlaying.SetActive(false);
 		canvasPause.SetActive(false);
 		canvasVictory.SetActive(true);
+	}
+
+	public void Death()
+	{
+		isPlaying = false;
+		canvasPlaying.SetActive(false);
+		canvasPause.SetActive(false);
+		canvasVictory.SetActive(false);
+		canvasDeath.SetActive(true);
 	}
 
 	public void OnButtonReload()
