@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject canvasDeath;
 
 	public Text levelText;
+
 	int score = 0;
 	int coins = 0;
 
@@ -50,10 +51,6 @@ public class GameManager : MonoBehaviour {
 	
 	void Update () 
 	{
-
-		if (Input.GetKeyUp(KeyCode.B))
-			Victory();
-
 		//sets pause
 		if (Input.GetButtonDown("Pause") && !canvasDeath.activeSelf && !canvasVictory.activeSelf)
 		{
@@ -63,6 +60,7 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	//triggers victory event
 	public void Victory()
 	{
 		score += 1000;
@@ -72,6 +70,7 @@ public class GameManager : MonoBehaviour {
 		canvasVictory.SetActive(true);
 	}
 
+	//triggers death event
 	public void Death()
 	{
 		isPlaying = false;
@@ -80,6 +79,8 @@ public class GameManager : MonoBehaviour {
 		canvasVictory.SetActive(false);
 		canvasDeath.SetActive(true);
 	}
+
+	#region ButtonHandling
 
 	public void OnButtonReload()
 	{
@@ -98,4 +99,6 @@ public class GameManager : MonoBehaviour {
 		else
 			Application.LoadLevel(0);
 	}
+
+	#endregion
 }
