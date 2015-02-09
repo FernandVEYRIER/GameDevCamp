@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour {
 	{
 		//checks the scene in order to delete every redundant game managers
 		DontDestroyOnLoad(this.gameObject);
-		GameObject [] gm = GameObject.FindGameObjectsWithTag("GameManager");
+		/*GameObject [] gm = GameObject.FindGameObjectsWithTag("GameManager");
 		if (gm.Length > 1)
 		{
 			foreach (GameObject go in gm)
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour {
 				if (go.gameObject != this.gameObject)
 					Destroy(go.gameObject);
 			}
-		}
+		}*/
 	}
 
 	void Start () 

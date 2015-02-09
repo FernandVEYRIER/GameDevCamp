@@ -2,7 +2,8 @@ fileFormatVersion: 2
 guid: 64999cdd138851e42b0893c548f6f49c
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - menuClip: {fileID: 8300000, guid: ba6a2936b48ea6446bd0480b7ae5ac88, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

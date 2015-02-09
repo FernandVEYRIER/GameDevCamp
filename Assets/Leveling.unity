@@ -1211,6 +1211,10 @@ Prefab:
       propertyPath: m_TagString
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 102348, guid: 5bba9ea3caf102c499a3022482bd7c5e, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5bba9ea3caf102c499a3022482bd7c5e, type: 2}
   m_RootGameObject: {fileID: 1770560804}
