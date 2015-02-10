@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64999cdd138851e42b0893c548f6f49c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuClip: {fileID: 0}
+  menuClip: {fileID: 8300000, guid: ba6a2936b48ea6446bd0480b7ae5ac88, type: 3}
   audioClip: []
 --- !u!1001 &100100000
 Prefab:
