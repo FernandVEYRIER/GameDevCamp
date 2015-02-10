@@ -7,6 +7,7 @@ public class 						Manage_Menu : MonoBehaviour
 	public GameObject[]				Menu_button;
 	public GameObject[]				Settings_button;
 	public AudioSource				Music;
+	public Slider					volume_slide;
 	private static GameObject[][]	array = new GameObject[2][];
 	private Animator				my_anim;
 
@@ -65,7 +66,7 @@ public class 						Manage_Menu : MonoBehaviour
 
 	public void		Change_volume()
 	{
-
+		Music.GetComponent<AudioManager>().changeVolume(volume_slide.value);
 		//appeler l'audio manager de fernand
 	}
 

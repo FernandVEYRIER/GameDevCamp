@@ -150,7 +150,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1828559284}
+      - m_Target: {fileID: 1828559285}
         m_MethodName: Settings_press
         m_Mode: 1
         m_Arguments:
@@ -474,7 +474,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 585762959}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1828559285}
+        m_MethodName: Play_press
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &585762959
@@ -660,7 +672,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 719608995}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1828559285}
+        m_MethodName: Quit_press
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &719608995
@@ -717,6 +741,8 @@ GameObject:
   - 92: {fileID: 997218053}
   - 124: {fileID: 997218052}
   - 81: {fileID: 997218051}
+  - 82: {fileID: 997218056}
+  - 114: {fileID: 997218057}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -789,6 +815,77 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!82 &997218056
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 997218050}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!114 &997218057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 997218050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64999cdd138851e42b0893c548f6f49c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuClip: {fileID: 8300000, guid: ba6a2936b48ea6446bd0480b7ae5ac88, type: 3}
+  audioClip: []
 --- !u!1 &1030775308
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,7 +1132,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1828559284}
+      - m_Target: {fileID: 0}
         m_MethodName: Change_volume
         m_Mode: 1
         m_Arguments:
@@ -1285,7 +1382,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1828559284}
+      - m_Target: {fileID: 1828559285}
         m_MethodName: Return_press
         m_Mode: 1
         m_Arguments:
@@ -1499,7 +1596,6 @@ GameObject:
   - 223: {fileID: 1828559283}
   - 114: {fileID: 1828559282}
   - 114: {fileID: 1828559281}
-  - 114: {fileID: 1828559284}
   - 114: {fileID: 1828559285}
   m_Layer: 5
   m_Name: Menu
@@ -1580,20 +1676,6 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!114 &1828559284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1828559279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe116dc79066865429abe6cb4484e176, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Menu_button: []
-  Settings_button: []
-  Music: {fileID: 0}
 --- !u!114 &1828559285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1612,7 +1694,8 @@ MonoBehaviour:
   Settings_button:
   - {fileID: 1716222031}
   - {fileID: 1660840912}
-  Music: {fileID: 0}
+  Music: {fileID: 997218056}
+  volume_slide: {fileID: 1259272832}
 --- !u!1 &1885347519
 GameObject:
   m_ObjectHideFlags: 0
