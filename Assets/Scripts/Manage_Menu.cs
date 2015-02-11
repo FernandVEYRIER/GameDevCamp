@@ -66,7 +66,8 @@ public class 						Manage_Menu : MonoBehaviour
 
 	public void		Change_volume()
 	{
-		Music.GetComponent<AudioManager>().changeVolume(volume_slide.value);
+		AudioListener.volume = volume_slide.value;
+		//Music.GetComponent<AudioManager>().changeVolume(volume_slide.value);
 		//appeler l'audio manager de fernand
 	}
 
