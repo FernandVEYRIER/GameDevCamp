@@ -632,10 +632,10 @@ RectTransform:
   - {fileID: 1809383094}
   m_Father: {fileID: 1849410043}
   m_RootOrder: 0
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -83, y: -26}
-  m_SizeDelta: {x: 160, y: 52.0999985}
+  m_AnchorMin: {x: .816582084, y: .879460573}
+  m_AnchorMax: {x: 1, y: .879460573}
+  m_AnchoredPosition: {x: -5.89999962, y: 2.43186951e-05}
+  m_SizeDelta: {x: -13, y: 52.0999985}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &181772637
 MonoBehaviour:
