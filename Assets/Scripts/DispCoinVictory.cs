@@ -17,9 +17,9 @@ public class DispCoinVictory : MonoBehaviour {
 
 	IEnumerator dispCoins()
 	{
-		for (int i = 1; i <= 3 ; i++)
+		for (int i = 0; i < 3 ; i++)
 		{
-			if (coinAmount <= i)
+			if (coinAmount +1 <= i)
 				coins[i].sprite = coinFull;
 			yield return new WaitForSeconds(0.5f);
 		}
