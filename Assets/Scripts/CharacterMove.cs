@@ -14,7 +14,7 @@ public class CharacterMove : MonoBehaviour {
 		if (isgrounded)
 		{
 			parent = transform.parent;
-			StartCoroutine(timer());
+			rigidbody2D.AddForce(Vector2.up * strenght);
 		}
 	}
 	// Je pas réussi à faire autrement qu'avec un raycast si je faisais avec les normals de contact ça me faisait de la merde...
@@ -36,17 +36,8 @@ public class CharacterMove : MonoBehaviour {
 			isgrounded = false;
 			transform.parent = parent;
 		}
-		if (activate)
-				//transform.position = Vector2.SmoothDamp(transform.position, new Vector2 (transform.position.x, transform.position.y + strenght), ref vel, 0.2f);
-			transform.position = Vector2.Lerp (transform.position, new Vector2 (transform.position.x, transform.position.y + strenght), Time.deltaTime);
 		//Pour voir l'état de isgrounded :
 		//print(isgrounded);
 
-	}
-	IEnumerator timer()
-	{
-		activate = true;
-		yield return new WaitForSeconds(1);
-		activate = false;
 	}
 }

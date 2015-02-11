@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origin: {fileID: 1659243934}
-  strenght: 4
+  strenght: 900
 --- !u!212 &474896169
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -527,7 +527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origin: {fileID: 1659243934}
-  strenght: 4
+  strenght: 300
 --- !u!212 &697722439
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -890,7 +890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origin: {fileID: 1659243934}
-  strenght: 4
+  strenght: 600
 --- !u!212 &1754511289
 SpriteRenderer:
   m_ObjectHideFlags: 0
