@@ -629,10 +629,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 912153083}
   m_RootOrder: 2
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 125, y: -25}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &378588214
 MonoBehaviour:
@@ -701,6 +701,10 @@ Prefab:
     - target: {fileID: 402320, guid: 5bba9ea3caf102c499a3022482bd7c5e, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 102352, guid: 5bba9ea3caf102c499a3022482bd7c5e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5bba9ea3caf102c499a3022482bd7c5e, type: 2}
@@ -1426,9 +1430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinFull: {fileID: 21300000, guid: 67f89f426d0f0b3498712dfab58f091b, type: 3}
-  coin1: {fileID: 1881914452}
-  coin2: {fileID: 1363956595}
-  coin3: {fileID: 378588214}
+  coins: []
 --- !u!1 &1138110799
 GameObject:
   m_ObjectHideFlags: 0
@@ -2073,10 +2075,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 912153083}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 75, y: -25}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1363956595
 MonoBehaviour:
@@ -2618,10 +2620,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 912153083}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 25, y: -25}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1881914452
 MonoBehaviour:
@@ -2737,7 +2739,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1947557048
 RectTransform:
   m_ObjectHideFlags: 0
