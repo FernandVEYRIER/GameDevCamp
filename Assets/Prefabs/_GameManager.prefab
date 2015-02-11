@@ -957,6 +957,7 @@ MonoBehaviour:
   canvasPlaying: {fileID: 102332}
   canvasDeath: {fileID: 172520}
   levelText: {fileID: 11402334}
+  coins: 0
 --- !u!114 &11402360
 MonoBehaviour:
   m_ObjectHideFlags: 1
