@@ -1367,7 +1367,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuClip: {fileID: 8300000, guid: ba6a2936b48ea6446bd0480b7ae5ac88, type: 3}
   _slider: {fileID: 11480542}
-  audioClip: []
+  audioClip:
+  - {fileID: 8300000, guid: ba6a2936b48ea6446bd0480b7ae5ac88, type: 3}
 --- !u!114 &11430168
 MonoBehaviour:
   m_ObjectHideFlags: 1
