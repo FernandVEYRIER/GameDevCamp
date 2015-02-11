@@ -16,7 +16,6 @@ public class CharacterMove : MonoBehaviour {
 	void Update()
 	{
 		string tag = null;
-		print (isgrounded);
 		//Pour voir cette putin de ligne de merde :
 		//Debug.DrawLine (new Vector2(transform.position.x, transform.position.y - collider2D.bounds.extents.y), new Vector2(transform.position.x, transform.position.y - collider2D.bounds.extents.y - 0.1f), Color.green);
 		if (Physics2D.Linecast (new Vector2 (transform.position.x, transform.position.y - collider2D.bounds.extents.y - 0.01f), new Vector2 (transform.position.x, transform.position.y - collider2D.bounds.extents.y - 0.1f)).collider != null)
