@@ -6,6 +6,8 @@ public class TutoScript : MonoBehaviour {
 	public MoveHeros moveHeros;
 	public Defil background;
 	public Defil ground;
+
+	bool firstClick = false;
 	// Use this for initialization
 	void Start () 
 	{
@@ -16,18 +18,28 @@ public class TutoScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (Input.GetMouseButtonDown(0))
+		if (Input.GetMouseButtonDown(0) && Time.timeSinceLevelLoad > 2.4f && !firstClick)
 		{
-			Debug.Log("toto");
+			firstClick = true;
+			moveHeros.enabled = true;
+			background.enabled = true;
+			ground.enabled = true;
+			this.GetComponent<SpriteRenderer>().enabled = false;
+			//StartCoroutine(totoPart2());
 		}
 	}
 
 	IEnumerator tuto()
 	{
-		yield return new WaitForSeconds(2.2f);
+		yield return new WaitForSeconds(2.4f);
 		this.GetComponent<SpriteRenderer>().enabled = true;
 		moveHeros.enabled = false;
 		background.enabled = false;
 		ground.enabled = false;
-	}	
+	}
+
+	IEnumerator totoPart2()
+	{
+		yield return new WaitForSeconds(2.2f);
+	}
 }
