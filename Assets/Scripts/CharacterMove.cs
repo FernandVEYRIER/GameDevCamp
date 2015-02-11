@@ -40,7 +40,7 @@ public class CharacterMove : MonoBehaviour {
 		}
 		//Pour voir l'état de isgrounded :
 		//print(isgrounded);
-		if (transform.position.x != origin.position.x)
+		if (transform.position.x <= origin.position.x - 0.2f || transform.position.x >= origin.position.x + 0.2f)
 			GameObject.Find("_GameManager").GetComponent<GameManager>().Death();
 	}
 }
