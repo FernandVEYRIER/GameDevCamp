@@ -7,8 +7,6 @@ public class CharacterMove : MonoBehaviour {
 	public float		strenght = 2;
 	private bool		isgrounded = false;
 	private Transform	parent;
-	private Vector2		vel;
-	private bool		activate = false;
 	void OnMouseDown()
 	{
 		if (isgrounded)
