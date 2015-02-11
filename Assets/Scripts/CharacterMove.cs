@@ -36,6 +36,6 @@ public class CharacterMove : MonoBehaviour {
 		}
 		//Pour voir l'état de isgrounded :
 		//print(isgrounded);
-		//transform.position = new Vector2 (gameObject.GetComponentInParent<Transform>().position.x, transform.position.y);
+		transform.position = new Vector2 (origin.position.x, transform.position.y);
 	}
 }
