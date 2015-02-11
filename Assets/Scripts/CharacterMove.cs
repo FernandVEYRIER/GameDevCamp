@@ -7,6 +7,10 @@ public class CharacterMove : MonoBehaviour {
 	public float		strenght = 2;
 	private bool		isgrounded = false;
 	private Transform	parent;
+	void Start()
+	{
+		transform.position = new Vector2 (origin.position.x, transform.position.y);
+	}
 	void OnMouseDown()
 	{
 		if (isgrounded)
@@ -36,6 +40,7 @@ public class CharacterMove : MonoBehaviour {
 		}
 		//Pour voir l'état de isgrounded :
 		//print(isgrounded);
-		transform.position = new Vector2 (origin.position.x, transform.position.y);
+		if (transform.position.x != origin.position.x)
+			GameObject.Find("_GameManager").GetComponent<GameManager>().Death();
 	}
 }
