@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour {
 
 	void Start () 
 	{
+		Time.timeScale = 1;
 		//resets score if needed
 		if (Application.loadedLevel == 1)
 		{
@@ -103,16 +104,19 @@ public class GameManager : MonoBehaviour {
 
 	public void OnButtonReload()
 	{
+		Time.timeScale = 1;
 		Application.LoadLevel(Application.loadedLevel);
 	}
 
 	public void OnButtonMenu()
 	{
+		Time.timeScale = 1;
 		Application.LoadLevel(0);
 	}
 
 	public void OnButtonWin()
 	{
+		Time.timeScale = 1;
 		if (Application.loadedLevel + 1 <= Application.levelCount)
 			Application.LoadLevel(Application.loadedLevel + 1);
 		else

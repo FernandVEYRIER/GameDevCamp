@@ -17,3 +17,5 @@ EditorBuildSettings:
     path: Assets/Level3.unity
   - enabled: 1
     path: Assets/Level_gaspar.unity
+  - enabled: 1
+    path: Assets/EndScene.unity
