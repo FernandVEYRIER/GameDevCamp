@@ -61,7 +61,7 @@ public class 						Manage_Menu : MonoBehaviour
 
 	public void		Play_press()
 	{
-		//Application.LoadLevel('[insert_level_here]');
+		Application.LoadLevel(1);
 	}
 
 	public void		Change_volume()
