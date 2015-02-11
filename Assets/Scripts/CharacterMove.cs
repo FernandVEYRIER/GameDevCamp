@@ -42,7 +42,7 @@ public class CharacterMove : MonoBehaviour {
 		//Pour voir l'état de isgrounded :
 		//print(isgrounded);
 		transform.position = Vector3.SmoothDamp (transform.position, new Vector3 (origin.position.x, transform.position.y, transform.position.z), ref vec, 0.1f);
-		if (transform.position.x <= origin.position.x - 0.5f || transform.position.x >= origin.position.x + 0.5f)
+		if (transform.position.x <= origin.position.x - 0.5f || transform.position.x >= origin.position.x + 0.5f || transform.position.x >= 5.4f)
 			GameObject.Find("_GameManager").GetComponent<GameManager>().Death();
 	}
 }
