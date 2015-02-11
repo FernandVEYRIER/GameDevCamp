@@ -68,6 +68,8 @@ public class GameManager : MonoBehaviour {
 			GameObject.Find("Coin2").GetComponent<Image>().sprite = coinFull;
 		if (coins == 3)
 			GameObject.Find("Coin3").GetComponent<Image>().sprite = coinFull;
+		if (coins > 3)
+			coins = 3;
 	}
 
 	//triggers victory event
