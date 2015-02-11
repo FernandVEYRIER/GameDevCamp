@@ -6,6 +6,6 @@ public class MoveHeros : MonoBehaviour {
 	public float	speed = 4;
 	void Update ()
 	{
-		transform.Translate (Vector2.right * Time.deltaTime * speed);
+		transform.Translate (transform.TransformDirection(Vector2.right * Time.deltaTime * speed));
 	}
 }
