@@ -5,6 +5,7 @@ public class AddCoin : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
-		GameObject.Find("_GameManager").GetComponent<GameManager>().coins++;
+		if (col.collider2D.tag == "Player")
+			GameObject.Find("_GameManager").GetComponent<GameManager>().coins++;
 	}
 }

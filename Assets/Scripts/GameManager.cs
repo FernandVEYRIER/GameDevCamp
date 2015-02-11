@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour {
 	void Awake()
 	{
 		//checks the scene in order to delete every redundant game managers
-		DontDestroyOnLoad(this.gameObject);
+		//DontDestroyOnLoad(this.gameObject);
 		/*GameObject [] gm = GameObject.FindGameObjectsWithTag("GameManager");
 		if (gm.Length > 1)
 		{
