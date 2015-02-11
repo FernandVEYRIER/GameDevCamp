@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 [RequireComponent (typeof (AudioSource))]
 public class AudioManager : MonoBehaviour {
 
 	//this contains the menu clip
 	public AudioClip menuClip;
+	public Slider _slider;
 
 	float volume = 1;
 
@@ -20,6 +22,11 @@ public class AudioManager : MonoBehaviour {
 			audio.Play();
 		else
 			StartCoroutine(playSongs());
+	}
+
+	void Update()
+	{
+		audio.volume = _slider.value;
 	}
 
 	IEnumerator playSongs()
