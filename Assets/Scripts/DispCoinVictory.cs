@@ -19,9 +19,9 @@ public class DispCoinVictory : MonoBehaviour {
 	{
 		for (int i = 0; i < 3 ; i++)
 		{
+			yield return new WaitForSeconds(0.8f);
 			if (coinAmount > i)
 				coins[i].sprite = coinFull;
-			yield return new WaitForSeconds(0.5f);
 		}
 	}
 }
