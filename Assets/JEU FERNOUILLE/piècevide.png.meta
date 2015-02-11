@@ -1,7 +1,11 @@
 fileFormatVersion: 2
 guid: a5b3638727b06ee4293ec276344f0f0a
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: "pi\xE8cevide_0"
+    21300002: "pi\xE8cevide_1"
+    21300004: "pi\xE8cevide_2"
+    21300006: "pi\xE8cevide_3"
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -25,13 +29,13 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -42,6 +46,46 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: "pi\xE8cevide_0"
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 817
+        width: 126
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: "pi\xE8cevide_1"
+      rect:
+        serializedVersion: 2
+        x: 946
+        y: 823
+        width: 122
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: "pi\xE8cevide_2"
+      rect:
+        serializedVersion: 2
+        x: 686
+        y: 223
+        width: 113
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: "pi\xE8cevide_3"
+      rect:
+        serializedVersion: 2
+        x: 821
+        y: 218
+        width: 94
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

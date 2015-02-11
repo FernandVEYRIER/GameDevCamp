@@ -13,11 +13,14 @@ public class GameManager : MonoBehaviour {
 	public GameObject canvasPlaying;
 	public GameObject canvasDeath;
 
-	public Text levelText;
+	//public Text levelText;
 
 	int score = 0;
 	[HideInInspector]
 	public int coins = 0;
+
+	public Sprite coinFull;
+	public Sprite coinEmpty;
 
 	void Awake()
 	{
@@ -47,7 +50,7 @@ public class GameManager : MonoBehaviour {
 		canvasVictory.SetActive(false);
 		canvasPlaying.SetActive(true);
 		canvasDeath.SetActive(false);
-		levelText.text = "Level " + Application.loadedLevel.ToString();
+		//levelText.text = "Level " + Application.loadedLevel.ToString();
 	}
 	
 	void Update () 
@@ -59,6 +62,12 @@ public class GameManager : MonoBehaviour {
 			isPlaying = !isPlaying;
 			Time.timeScale = (Time.timeScale == 1) ? 0 : 1;
 		}
+		if (coins == 1)
+			GameObject.Find("Coin1").GetComponent<Image>().sprite = coinFull;
+		if (coins == 2)
+			GameObject.Find("Coin2").GetComponent<Image>().sprite = coinFull;
+		if (coins == 3)
+			GameObject.Find("Coin3").GetComponent<Image>().sprite = coinFull;
 	}
 
 	//triggers victory event
@@ -74,6 +83,10 @@ public class GameManager : MonoBehaviour {
 	//triggers death event
 	public void Death()
 	{
+		//destroys player
+		GameObject[] playerGo = GameObject.FindGameObjectsWithTag("Player");
+		foreach (GameObject go in playerGo)
+			Destroy(go);
 		isPlaying = false;
 		canvasPlaying.SetActive(false);
 		canvasPause.SetActive(false);
