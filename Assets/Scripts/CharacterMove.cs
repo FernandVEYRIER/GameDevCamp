@@ -20,9 +20,9 @@ public class CharacterMove : MonoBehaviour {
 	{
 		string tag = null;
 		//Pour voir cette putin de ligne de merde :
-		//Debug.DrawLine (new Vector2(transform.position.x, transform.position.y - collider2D.bounds.extents.y), new Vector2(transform.position.x, transform.position.y - collider2D.bounds.extents.y - 0.1f), Color.green);
-		if (Physics2D.Linecast (new Vector2 (transform.position.x, transform.position.y - collider2D.bounds.extents.y - 0.01f), new Vector2 (transform.position.x, transform.position.y - collider2D.bounds.extents.y - 0.1f)).collider != null)
-			tag = Physics2D.Linecast(new Vector2(transform.position.x, transform.position.y - collider2D.bounds.extents.y - 0.01f), new Vector2(transform.position.x, transform.position.y - collider2D.bounds.extents.y - 0.1f)).collider.tag;
+		Debug.DrawLine (new Vector2(transform.position.x, transform.position.y - collider2D.bounds.extents.y), new Vector2(transform.position.x, transform.position.y - collider2D.bounds.extents.y - 0.3f), Color.green);
+		if (Physics2D.Linecast (new Vector2 (transform.position.x, transform.position.y - collider2D.bounds.extents.y - 0.01f), new Vector2 (transform.position.x, transform.position.y - collider2D.bounds.extents.y - 0.3f)).collider != null)
+			tag = Physics2D.Linecast(new Vector2(transform.position.x, transform.position.y - collider2D.bounds.extents.y - 0.01f), new Vector2(transform.position.x, transform.position.y - collider2D.bounds.extents.y - 0.3f)).collider.tag;
 		if (tag == "Terrain" || tag == "Player")
 		{
 			isgrounded = true;
@@ -36,6 +36,6 @@ public class CharacterMove : MonoBehaviour {
 		}
 		//Pour voir l'état de isgrounded :
 		//print(isgrounded);
-
+		//transform.position = new Vector2 (gameObject.GetComponentInParent<Transform>().position.x, transform.position.y);
 	}
 }
