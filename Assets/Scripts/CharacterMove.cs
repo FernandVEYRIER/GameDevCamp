@@ -7,6 +7,7 @@ public class CharacterMove : MonoBehaviour {
 	public float		strenght = 2;
 	private bool		isgrounded = false;
 	private Transform	parent;
+	private Vector3		vec;
 	void Start()
 	{
 		transform.position = new Vector2 (origin.position.x, transform.position.y);
@@ -24,9 +25,9 @@ public class CharacterMove : MonoBehaviour {
 	{
 		string tag = null;
 		//Pour voir cette putin de ligne de merde :
-		Debug.DrawLine (new Vector2(transform.position.x, transform.position.y - collider2D.bounds.extents.y), new Vector2(transform.position.x, transform.position.y - collider2D.bounds.extents.y - 0.1f), Color.green);
-		if (Physics2D.Linecast (new Vector2 (transform.position.x, transform.position.y - collider2D.bounds.extents.y - 0.01f), new Vector2 (transform.position.x, transform.position.y - collider2D.bounds.extents.y - 0.1f)).collider != null)
-			tag = Physics2D.Linecast(new Vector2(transform.position.x, transform.position.y - collider2D.bounds.extents.y - 0.01f), new Vector2(transform.position.x, transform.position.y - collider2D.bounds.extents.y - 0.1f)).collider.tag;
+		Debug.DrawLine (new Vector2(transform.position.x, transform.position.y - collider2D.bounds.extents.y), new Vector2(transform.position.x, transform.position.y - collider2D.bounds.extents.y - 0.4f), Color.green);
+		if (Physics2D.Linecast (new Vector2 (transform.position.x, transform.position.y - collider2D.bounds.extents.y - 0.01f), new Vector2 (transform.position.x, transform.position.y - collider2D.bounds.extents.y - 0.4f)).collider != null)
+			tag = Physics2D.Linecast(new Vector2(transform.position.x, transform.position.y - collider2D.bounds.extents.y - 0.01f), new Vector2(transform.position.x, transform.position.y - collider2D.bounds.extents.y - 0.4f)).collider.tag;
 		if (tag == "Terrain" || tag == "Player")
 		{
 			isgrounded = true;
@@ -40,7 +41,8 @@ public class CharacterMove : MonoBehaviour {
 		}
 		//Pour voir l'état de isgrounded :
 		//print(isgrounded);
-		if (transform.position.x <= origin.position.x - 0.2f || transform.position.x >= origin.position.x + 0.2f)
+		transform.position = Vector3.SmoothDamp (transform.position, new Vector3 (origin.position.x, transform.position.y, transform.position.z), ref vec, 0.1f);
+		if (transform.position.x <= origin.position.x - 0.5f || transform.position.x >= origin.position.x + 0.5f)
 			GameObject.Find("_GameManager").GetComponent<GameManager>().Death();
 	}
 }
