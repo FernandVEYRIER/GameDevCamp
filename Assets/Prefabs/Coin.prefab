@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21281784}
   - 58: {fileID: 5881784}
   - 50: {fileID: 5081784}
+  - 114: {fileID: 11433896}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -56,6 +57,17 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_Radius: .550000012
   m_Center: {x: 0, y: .0599999987}
+--- !u!114 &11433896
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5e691f1f29c4f408c2523793f5b1ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &21281784
 SpriteRenderer:
   m_ObjectHideFlags: 1
