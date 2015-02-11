@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
 	public Text levelText;
 
 	int score = 0;
+	[HideInInspector]
 	public int coins = 0;
 
 	void Awake()
