@@ -62,14 +62,17 @@ public class GameManager : MonoBehaviour {
 			isPlaying = !isPlaying;
 			Time.timeScale = (Time.timeScale == 1) ? 0 : 1;
 		}
-		if (coins == 1)
-			GameObject.Find("Coin1").GetComponent<Image>().sprite = coinFull;
-		if (coins == 2)
-			GameObject.Find("Coin2").GetComponent<Image>().sprite = coinFull;
-		if (coins == 3)
-			GameObject.Find("Coin3").GetComponent<Image>().sprite = coinFull;
-		if (coins > 3)
-			coins = 3;
+		if (canvasPlaying.activeSelf)
+		{
+			if (coins == 1)
+				GameObject.Find("Coin1").GetComponent<Image>().sprite = coinFull;
+			if (coins == 2)
+				GameObject.Find("Coin2").GetComponent<Image>().sprite = coinFull;
+			if (coins == 3)
+				GameObject.Find("Coin3").GetComponent<Image>().sprite = coinFull;
+			if (coins > 3)
+				coins = 3;
+		}
 	}
 
 	//triggers victory event
