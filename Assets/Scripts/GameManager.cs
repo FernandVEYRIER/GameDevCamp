@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour {
 	public Text levelText;
 
 	int score = 0;
-	int coins = 0;
+	public int coins = 0;
 
 	void Awake()
 	{
