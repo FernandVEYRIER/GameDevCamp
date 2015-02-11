@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Menu_Principal.unity
+    path: Assets/Level_gaspar.unity
   - enabled: 1
-    path: Assets/Level1.unity
+    path: Assets/character move.unity
