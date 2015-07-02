@@ -14,19 +14,50 @@ public class AudioManager : MonoBehaviour {
 	//and this all the other clips
 	public AudioClip [] audioClip;
 
+	// Keeps track of the instances of audioManagers already deployed to prevent stacks
+	public static bool isAlreadyInstanced;
+
+	void Awake ()
+	{
+		if ( isAlreadyInstanced )
+		{
+			Destroy( this.gameObject );
+		}
+		else
+		{
+			isAlreadyInstanced = true;
+			DontDestroyOnLoad( this.gameObject );
+		}
+	}
+
 	void Start () 
 	{
 		audio.loop = true;
 		audio.volume = volume;
-		if (Application.loadedLevel == 0)
-			audio.Play();
-		else
-			StartCoroutine(playSongs());
+
+		if ( !audio.isPlaying )
+		{
+			StartCoroutine( playSongs() );
+		}
+		return;
 	}
 
 	void Update()
 	{
-		audio.volume = _slider.value;
+		GameObject newSlider;
+		if ( _slider == null )
+		{
+			newSlider = GameObject.Find("Slider");
+			// Need to check before because the object might be deactivated, so unreachable
+			if ( newSlider != null )
+			{
+				_slider = newSlider.GetComponent<Slider>();
+			}
+		}
+		else
+		{
+            audio.volume = _slider.value;
+		}
 	}
 
 	IEnumerator playSongs()
