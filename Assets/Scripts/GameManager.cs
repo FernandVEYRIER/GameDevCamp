@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using System;
 
 public class GameManager : MonoBehaviour {
 
@@ -22,19 +25,13 @@ public class GameManager : MonoBehaviour {
 	public Sprite coinFull;
 	public Sprite coinEmpty;
 
+	LevelData [] data;
+
 	void Awake()
 	{
-		//checks the scene in order to delete every redundant game managers
-		//DontDestroyOnLoad(this.gameObject);
-		/*GameObject [] gm = GameObject.FindGameObjectsWithTag("GameManager");
-		if (gm.Length > 1)
-		{
-			foreach (GameObject go in gm)
-			{
-				if (go.gameObject != this.gameObject)
-					Destroy(go.gameObject);
-			}
-		}*/
+		// Allocates the data necessary for saving all the levels infos
+		data = new LevelData[ Application.levelCount ];
+		LoadData();
 	}
 
 	void Start () 
@@ -74,6 +71,15 @@ public class GameManager : MonoBehaviour {
 			if (coins > 3)
 				coins = 3;
 		}
+
+		if ( Input.GetKeyDown( KeyCode.A ) )
+		{
+			SaveData();
+		}
+		if ( Input.GetKeyDown( KeyCode.B ) )
+		{
+			LoadData();
+		}
 	}
 
 	//triggers victory event
@@ -84,6 +90,8 @@ public class GameManager : MonoBehaviour {
 		canvasPlaying.SetActive(false);
 		canvasPause.SetActive(false);
 		canvasVictory.SetActive(true);
+
+		SaveData ();
 	}
 
 	//triggers death event
@@ -124,4 +132,47 @@ public class GameManager : MonoBehaviour {
 	}
 
 	#endregion
+
+	public void SaveData()
+	{
+		BinaryFormatter bf = new BinaryFormatter();
+		FileStream file;
+
+		file = File.Open( Application.persistentDataPath + "/playerData.dat", FileMode.OpenOrCreate );
+
+		data[ Application.loadedLevel ] = new LevelData();
+		if ( data[ Application.loadedLevel].levelCoins < coins )
+			data[ Application.loadedLevel ].levelCoins = coins;
+		data[ Application.loadedLevel ].level = Application.loadedLevel;
+		bf.Serialize( file, data );
+		file.Close();
+	}
+
+	public void LoadData()
+	{
+		BinaryFormatter bf = new BinaryFormatter();
+		FileStream file;
+
+		if ( File.Exists( Application.persistentDataPath + "/playerData.dat" ) )
+		{
+			file = File.Open( Application.persistentDataPath + "/playerData.dat", FileMode.Open );
+		}
+		else
+		{
+			Debug.LogError( "Could not open file." );
+			return;
+		}
+
+		data = (LevelData[]) bf.Deserialize( file );
+		file.Close();
+	}
+
+}
+
+// Contains the necessary data per level
+[Serializable]
+class LevelData
+{
+	public int level;
+	public int levelCoins;
 }
