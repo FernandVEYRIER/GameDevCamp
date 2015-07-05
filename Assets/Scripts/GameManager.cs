@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour {
 
 	//can be acessed from everywhere
 	public static bool isPlaying;
-
+	public static GameManager GameManagerInstance;
+	
 	//get canvas
 	public GameObject canvasPause;
 	public GameObject canvasVictory;
@@ -32,6 +33,18 @@ public class GameManager : MonoBehaviour {
 		// Allocates the data necessary for saving all the levels infos
 		data = new LevelData[ Application.levelCount ];
 		LoadData();
+
+		// Checks for an existing instance of a game manager
+		if  ( GameManagerInstance == null )
+		{
+			DontDestroyOnLoad( this.gameObject );
+			GameManagerInstance = this;
+		}
+		// if it already exist, destroys it
+		else
+		{
+			Destroy( this.gameObject );
+		}
 	}
 
 	void Start () 
@@ -53,6 +66,11 @@ public class GameManager : MonoBehaviour {
 	
 	void Update () 
 	{
+		// if we are in the main menu level, don't execute anything
+		if ( Application.loadedLevel < 1 )
+		{
+			return;
+		}
 		//sets pause
 		if (Input.GetButtonDown("Pause") && !canvasDeath.activeSelf && !canvasVictory.activeSelf)
 		{

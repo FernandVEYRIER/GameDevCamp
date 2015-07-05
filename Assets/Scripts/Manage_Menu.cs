@@ -1,18 +1,35 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class 						Manage_Menu : MonoBehaviour
 {
 	public GameObject[]				Menu_button;
 	public GameObject[]				Settings_button;
-	public AudioSource				Music;
-	public Slider					volume_slide;
+	public AudioSource					Music;
+	public Slider								volume_slide;
+
+	// Button handling
+	public GameObject 					levelMenu;
+	public GameObject 					levelButtonTemplate;
+	public Sprite							coinEmpty;
+	public Sprite							coinFull;
+
 	private static GameObject[][]	array = new GameObject[2][];
-	private Animator				my_anim;
+	private Animator						my_anim;
+
+	LevelData[] data;
+
+	void Awake()
+	{
+		LoadData();
+	}
 
 	void	Start()
 	{
+
 		/*
 		**	I set my array of GameObject array whith my two arrays in order to use it
 		**		by choosing one of the two with a parameter in function Launch_animation()
@@ -26,6 +43,31 @@ public class 						Manage_Menu : MonoBehaviour
 		*/
 
 		StartCoroutine(Launch_anim(0, "come"));
+
+		GameManager.GameManagerInstance.LoadData();
+
+		// Adding buttons
+		// Should be done when the player opens the level menu
+		for( int i = 0; i < Application.levelCount; i++ )
+		{
+			GameObject button = (GameObject) Instantiate( levelButtonTemplate );
+			button.transform.SetParent( levelMenu.transform );
+			if ( i < data.Length && data[i] != null )
+			{
+				button.GetComponentInChildren<Text>().text = "Level " + ( i + 1 ) + " coins : " + data[i].levelCoins;
+				for ( int j = 1; j < 4; j++ )
+				{
+					if ( j <= data[i].levelCoins )
+					{
+						button.transform.GetChild( j ).GetComponent<Image>().sprite = coinFull;
+					}
+					else
+					{
+						button.transform.GetChild( j ).GetComponent<Image>().sprite = coinEmpty;
+					}
+				}
+			}
+		}
 	}
 
 	public void		Settings_press()
@@ -85,5 +127,24 @@ public class 						Manage_Menu : MonoBehaviour
 			my_anim.SetBool(var, false);
 			i = i + 1;
 		}
+	}
+
+	public void LoadData()
+	{
+		BinaryFormatter bf = new BinaryFormatter();
+		FileStream file;
+		
+		if ( File.Exists( Application.persistentDataPath + "/playerData.dat" ) )
+		{
+			file = File.Open( Application.persistentDataPath + "/playerData.dat", FileMode.Open );
+		}
+		else
+		{
+			Debug.LogError( "Could not open file." );
+			return;
+		}
+		
+		data = (LevelData[]) bf.Deserialize( file );
+		file.Close();
 	}
 }
