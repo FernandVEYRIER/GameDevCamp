@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour {
 	void Awake()
 	{
 		// Allocates the data necessary for saving all the levels infos
-		data = new LevelData[ Application.levelCount ];
+		data = new LevelData[ Application.levelCount - 2 ];
 		LoadData();
 
 		// Checks for an existing instance of a game manager
@@ -59,13 +59,26 @@ public class GameManager : MonoBehaviour {
 		isPlaying = true;
 		canvasPause.SetActive(false);
 		canvasVictory.SetActive(false);
-		canvasPlaying.SetActive(true);
+		// We don't want to have the overlay active in the menu
+		if ( Application.loadedLevel > 0 )
+			canvasPlaying.SetActive(true);
+		else
+			canvasPlaying.SetActive(true);
 		canvasDeath.SetActive(false);
 		//levelText.text = "Level " + Application.loadedLevel.ToString();
 	}
 	
 	void Update () 
 	{
+		if ( Input.GetKeyDown( KeyCode.A ) )
+		{
+			SaveData();
+		}
+		if ( Input.GetKeyDown( KeyCode.B ) )
+		{
+			LoadData();
+		}
+
 		// if we are in the main menu level, don't execute anything
 		if ( Application.loadedLevel < 1 )
 		{
@@ -88,15 +101,6 @@ public class GameManager : MonoBehaviour {
 				GameObject.Find("Coin3").GetComponent<Image>().sprite = coinFull;
 			if (coins > 3)
 				coins = 3;
-		}
-
-		if ( Input.GetKeyDown( KeyCode.A ) )
-		{
-			SaveData();
-		}
-		if ( Input.GetKeyDown( KeyCode.B ) )
-		{
-			LoadData();
 		}
 	}
 
@@ -156,13 +160,20 @@ public class GameManager : MonoBehaviour {
 		BinaryFormatter bf = new BinaryFormatter();
 		FileStream file;
 
+		// Ignores save if we are of the outro level or the main menu
+		if ( Application.loadedLevel - 1 < 0 || Application.loadedLevel == Application.levelCount - 1 )
+		{
+			return;
+		}
+
 		file = File.Open( Application.persistentDataPath + "/playerData.dat", FileMode.OpenOrCreate );
 
-		data[ Application.loadedLevel ] = new LevelData();
-		if ( data[ Application.loadedLevel].levelCoins < coins )
-			data[ Application.loadedLevel ].levelCoins = coins;
-		data[ Application.loadedLevel ].level = Application.loadedLevel;
+		data[ Application.loadedLevel - 1 ] = new LevelData();
+		if ( data[ Application.loadedLevel - 1 ].levelCoins < coins )
+			data[ Application.loadedLevel - 1 ].levelCoins = coins;
+		data[ Application.loadedLevel - 1 ].level = Application.loadedLevel;
 		bf.Serialize( file, data );
+		Debug.Log("level = " + Application.loadedLevel + " data size = " + data.Length );
 		file.Close();
 	}
 

@@ -44,17 +44,28 @@ public class 						Manage_Menu : MonoBehaviour
 
 		StartCoroutine(Launch_anim(0, "come"));
 
-		GameManager.GameManagerInstance.LoadData();
+		loadLevelMenu();
+	}
 
+	void loadLevel( int level )
+	{
+		Application.LoadLevel( level );
+	}
+
+	void loadLevelMenu()
+	{
 		// Adding buttons
 		// Should be done when the player opens the level menu
-		for( int i = 0; i < Application.levelCount; i++ )
+		for( int i = 0; i < Application.levelCount - 2; i++ )
 		{
 			GameObject button = (GameObject) Instantiate( levelButtonTemplate );
 			button.transform.SetParent( levelMenu.transform );
+			button.GetComponentInChildren<Text>().text = "LEVEL " + ( i + 1 );
+
+			int tmp = i;
+			button.GetComponent<Button>().onClick.AddListener( delegate { loadLevel( tmp ); } );
 			if ( i < data.Length && data[i] != null )
 			{
-				button.GetComponentInChildren<Text>().text = "Level " + ( i + 1 ) + " coins : " + data[i].levelCoins;
 				for ( int j = 1; j < 4; j++ )
 				{
 					if ( j <= data[i].levelCoins )
@@ -65,6 +76,13 @@ public class 						Manage_Menu : MonoBehaviour
 					{
 						button.transform.GetChild( j ).GetComponent<Image>().sprite = coinEmpty;
 					}
+				}
+			}
+			else
+			{
+				for ( int j = 1; j < 4; j++ )
+				{
+					button.transform.GetChild( j ).GetComponent<Image>().sprite = coinEmpty;
 				}
 			}
 		}
@@ -145,6 +163,7 @@ public class 						Manage_Menu : MonoBehaviour
 		}
 		
 		data = (LevelData[]) bf.Deserialize( file );
+
 		file.Close();
 	}
 }
