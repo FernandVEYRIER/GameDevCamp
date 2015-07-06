@@ -62,7 +62,7 @@ public class 						Manage_Menu : MonoBehaviour
 			button.transform.SetParent( levelMenu.transform );
 			button.GetComponentInChildren<Text>().text = "LEVEL " + ( i + 1 );
 
-			int tmp = i;
+			int tmp = i + 1;
 			button.GetComponent<Button>().onClick.AddListener( delegate { loadLevel( tmp ); } );
 			if ( i < data.Length && data[i] != null )
 			{

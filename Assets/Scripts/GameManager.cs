@@ -173,7 +173,7 @@ public class GameManager : MonoBehaviour {
 			data[ Application.loadedLevel - 1 ].levelCoins = coins;
 		data[ Application.loadedLevel - 1 ].level = Application.loadedLevel;
 		bf.Serialize( file, data );
-		Debug.Log("level = " + Application.loadedLevel + " data size = " + data.Length );
+		Debug.Log("level = " + (Application.loadedLevel - 1) + " data size = " + data.Length );
 		file.Close();
 	}
 
