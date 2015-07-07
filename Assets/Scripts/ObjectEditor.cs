@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 /*
  * This script is attached to object when using the level editor to handle modifications
  */
+
 public class ObjectEditor : MonoBehaviour {
 
 	private LevelEditor editor;

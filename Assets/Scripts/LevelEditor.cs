@@ -5,6 +5,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System;
 using System.Runtime.InteropServices;
+using UnityEditor;
+using System.Xml.Serialization;
 
 public class LevelEditor : MonoBehaviour {
 
@@ -85,16 +87,36 @@ public class LevelEditor : MonoBehaviour {
 
 		List<UnityEngine.Object> tmp = new List<UnityEngine.Object>();
 
+		SerializeToXMLFile( "C:/", ObjectList[0], true);
+
 		file = File.Open( Application.persistentDataPath + "/CustomLevel.dat", FileMode.OpenOrCreate );
 
-		foreach ( var component in ObjectList[0].GetComponents<Component>() )
+		/*foreach ( var _component in ObjectList[0].GetComponents<Component>() )
 		{
-			Debug.Log( "Component = " + component );
-			tmp.Add( component );
-		}
+			Debug.Log( "Component = " + _component );
+			if ( _component.GetType().IsSerializable )
+			{
+				tmp.Add( _component );
+				Debug.Log( "Component actualy saved = " + _component );
+			}
+		}*/
 
-		bf.Serialize( file, tmp );
+		//bf.Serialize( file, tmp );
+		Debug.Log( "Data path = " + Application.dataPath );
+		//PrefabUtility.CreatePrefab( "C:/obj.asset", ObjectList[0] );
 		file.Close();
+	}
+
+	public static bool SerializeToXMLFile(string writePath, object serializableObject, bool overWrite = true)
+	{
+		if(File.Exists(writePath) || overWrite == false)
+			return false;
+		XmlSerializer serializer = new XmlSerializer( serializableObject.GetType() );
+		using( var writeFile = File.Create(writePath))
+		{
+			serializer.Serialize(writeFile, serializableObject);
+		}
+		return true;
 	}
 
 	public void LoadLevel()

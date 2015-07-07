@@ -1310,7 +1310,7 @@ GameObject:
   - 114: {fileID: 1172030402}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1408,7 +1408,9 @@ MonoBehaviour:
   - {fileID: 153728, guid: 86bef693a89fc2d478d89de9116d75b9, type: 2}
   - {fileID: 0}
   objectHolder: {fileID: 581316315}
+  objectSelected: {fileID: 0}
   objectLimit: 50
+  canSpawnObject: 0
 --- !u!114 &1172030402
 MonoBehaviour:
   m_ObjectHideFlags: 0
