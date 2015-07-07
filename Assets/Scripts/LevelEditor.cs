@@ -1,5 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using System;
+using System.Runtime.InteropServices;
 
 public class LevelEditor : MonoBehaviour {
 
@@ -7,19 +12,20 @@ public class LevelEditor : MonoBehaviour {
 	public GameObject ground;
 	public GameObject []  propTools;
 	public GameObject objectHolder;
+	public GameObject objectSelected;
 	public int objectLimit;
+	public bool canSpawnObject;
 
 	GameObject currentTool;
-
+	GameObject go;
 	int objectCount;
 
-	bool canSpawnObject;
-
-	GameObject go;
+	private List<GameObject> ObjectList = new List<GameObject>();
 
 	void Start () 
 	{
 		canSpawnObject = true;
+		objectSelected = null;
 		objectCount = 0;
 	}
 	
@@ -36,6 +42,7 @@ public class LevelEditor : MonoBehaviour {
 				go.transform.SetParent( objectHolder.transform );
 				go.tag = "EditorOnly";
 				go.AddComponent<ObjectEditor>();
+				ObjectList.Add( go );
 				++objectCount;
 			}
 		}
@@ -44,7 +51,8 @@ public class LevelEditor : MonoBehaviour {
 	public void OnMouseDrag()
 	{
 		canSpawnObject = false;
-		if ( currentTool != null )
+
+		if ( currentTool != null || objectSelected != null )
 			return;
 		background.GetComponent<MeshRenderer>().material.mainTextureOffset -= new Vector2( Input.GetAxis( "Mouse X" ) * 0.01f, 0 );
 		ground.GetComponent<MeshRenderer>().material.mainTextureOffset -= new Vector2( Input.GetAxis( "Mouse X" ) * 0.01f, 0 );
@@ -71,7 +79,49 @@ public class LevelEditor : MonoBehaviour {
 
 	public void SaveLevel()
 	{
-		Debug.Log( "Save level" );
+		Debug.Log( "Save level. Object count : " + ObjectList.Count );
+		BinaryFormatter bf = new BinaryFormatter();
+		FileStream file;
+
+		List<UnityEngine.Object> tmp = new List<UnityEngine.Object>();
+
+		file = File.Open( Application.persistentDataPath + "/CustomLevel.dat", FileMode.OpenOrCreate );
+
+		foreach ( var component in ObjectList[0].GetComponents<Component>() )
+		{
+			Debug.Log( "Component = " + component );
+			tmp.Add( component );
+		}
+
+		bf.Serialize( file, tmp );
+		file.Close();
+	}
+
+	public void LoadLevel()
+	{
+		List<GameObject> ObjectListFile;
+
+		Debug.Log( "Loading level." );
+		BinaryFormatter bf = new BinaryFormatter();
+		FileStream file;
+
+		if ( File.Exists( Application.persistentDataPath + "/CustomLevel.dat" ) )
+		{
+			file = File.OpenRead( Application.persistentDataPath + "/CustomLevel.dat" );
+		}
+		else
+		{
+			Debug.LogError( "File doesn't exist !" );
+			return;
+		}
+
+		ObjectListFile = (List<GameObject>) bf.Deserialize( file );
+
+		foreach ( GameObject go in ObjectListFile) 
+		{
+			Instantiate( go );
+		}
+		file.Close();
 	}
 
 	public void CleanLevel()
@@ -82,5 +132,6 @@ public class LevelEditor : MonoBehaviour {
 		{
 			Destroy( go );
 		}
+		ObjectList.Clear();
 	}
 }
