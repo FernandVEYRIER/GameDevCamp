@@ -25,13 +25,13 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: T
+  m_Name: ToolBarMove
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 04da8c8577243d949b3fafb752050bd4, type: 2}
+  - {fileID: 7400000, guid: 3290bcf4d3b934e4fb089549a9e5b499, type: 2}
   m_ParentStateMachine: {fileID: 110725734}
-  m_Position: {x: 50, y: 50, z: 0}
+  m_Position: {x: 264, y: 156, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 

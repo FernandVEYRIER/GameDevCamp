@@ -14,14 +14,19 @@ public class LevelEditor : MonoBehaviour {
 	public GameObject ground;
 	public GameObject []  propTools;
 	public GameObject objectHolder;
+	public GameObject toolBar;
+	[HideInInspector]
 	public GameObject objectSelected;
 	public int objectLimit;
+	[HideInInspector]
 	public bool canSpawnObject;
 
 	GameObject currentTool;
 	GameObject go;
 	int objectCount;
-
+	bool isToolBarHidden;
+	float toolBarInitialPosition;
+	
 	private List<GameObject> ObjectList = new List<GameObject>();
 
 	void Start () 
@@ -29,6 +34,7 @@ public class LevelEditor : MonoBehaviour {
 		canSpawnObject = true;
 		objectSelected = null;
 		objectCount = 0;
+		toolBarInitialPosition = toolBar.transform.position.x;
 	}
 	
 	void LateUpdate () 
@@ -50,6 +56,22 @@ public class LevelEditor : MonoBehaviour {
 		}
 	}
 
+	// Hides or shows the toolbar
+	public void MoveToolBar()
+	{
+		if ( isToolBarHidden )
+		{
+			isToolBarHidden = false;
+			toolBar.transform.position = new Vector3( toolBarInitialPosition, toolBar.transform.position.y, 0 );
+		}
+		else
+		{
+			isToolBarHidden = true;
+			toolBar.transform.position = new Vector3( Screen.width, toolBar.transform.position.y, 0 );
+		}
+	}
+
+	// Called when scrolling the map
 	public void OnMouseDrag()
 	{
 		canSpawnObject = false;
@@ -67,6 +89,7 @@ public class LevelEditor : MonoBehaviour {
 		canSpawnObject = state;
 	}
 
+	// Selects the tool to use
 	public void OnToolClick( int index )
 	{
 		if ( index < propTools.Length )
@@ -146,6 +169,7 @@ public class LevelEditor : MonoBehaviour {
 		file.Close();
 	}
 
+	// Removes all the objets of the level
 	public void CleanLevel()
 	{
 		GameObject [] allObjects = GameObject.FindGameObjectsWithTag( "EditorOnly" );
