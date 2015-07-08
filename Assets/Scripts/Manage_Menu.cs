@@ -3,22 +3,26 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System.Collections.Generic;
 
 public class 						Manage_Menu : MonoBehaviour
 {
 	public GameObject[]				Menu_button;
 	public GameObject[]				Settings_button;
-	public AudioSource					Music;
-	public Slider								volume_slide;
+	public GameObject[]				Level_Type;
+	public AudioSource				Music;
+	public Slider					volume_slide;
+	public GameObject				Levels;
 
 	// Button handling
-	public GameObject 					levelMenu;
-	public GameObject 					levelButtonTemplate;
-	public Sprite							coinEmpty;
-	public Sprite							coinFull;
+	public GameObject 				levelMenu;
+	public GameObject 				levelButtonTemplate;
+	public Sprite					coinEmpty;
+	public Sprite					coinFull;
 
-	private static GameObject[][]	array = new GameObject[2][];
-	private Animator						my_anim;
+	private static GameObject[][]	array = new GameObject[3][];
+	private Animator				my_anim;
+	private List<int[]>				chosen_menu = new List<int[]>();
 
 	LevelData[] data;
 
@@ -37,6 +41,7 @@ public class 						Manage_Menu : MonoBehaviour
 
 		array[0] = Menu_button;
 		array[1] = Settings_button;
+		array[2] = Level_Type;
 
 		/*
 		**	I make button menu come to the scene by the animations
@@ -45,6 +50,7 @@ public class 						Manage_Menu : MonoBehaviour
 		StartCoroutine(Launch_anim(0, "come"));
 
 		loadLevelMenu();
+		Levels.SetActive(false);
 	}
 
 	void loadLevel( int level )
@@ -54,6 +60,7 @@ public class 						Manage_Menu : MonoBehaviour
 
 	void loadLevelMenu()
 	{
+
 		// Adding buttons
 		// Should be done when the player opens the level menu
 		for( int i = 0; i < Application.levelCount - 2; i++ )
@@ -88,13 +95,29 @@ public class 						Manage_Menu : MonoBehaviour
 		}
 	}
 
+	public void		InGame_press()
+	{
+		/*
+		**	The choice ingame level make appear the ingame levels + leave last
+		*/
+
+		int[]		ingame = new int[] {2, -1};
+
+		chosen_menu.Add(ingame);
+		StartCoroutine(Launch_anim(2, "leave"));
+		Levels.SetActive(true);
+	}
+
 	public void		Settings_press()
 	{
 		/*
-		**	When the setting button is pressed I make the menu button leave
+		**	When the setting button is pressed we make the menu button leave
 		**		and come the settings button
+		**	We push the menus : menu and settings
 		*/
+		int[] setts = new int[] {0, 1};
 
+		chosen_menu.Add(setts);
 		StartCoroutine(Launch_anim(0, "leave"));
 		StartCoroutine(Launch_anim(1, "come"));
 	}
@@ -102,12 +125,15 @@ public class 						Manage_Menu : MonoBehaviour
 	public void		Return_press()
 	{
 		/*
-		**	When the setting button is pressed I make the settings button leave
-		**		and come the menu button
+		**	When the setting button is pressed we make the last menus leave and come
+		**	We pop the last menus in list
 		*/
+		int[]	menus;
 
-		StartCoroutine(Launch_anim(0, "come"));
-		StartCoroutine(Launch_anim(1, "leave"));
+		menus = chosen_menu[chosen_menu.Count - 1];
+		StartCoroutine(Launch_anim(menus[0], "come"));
+		StartCoroutine(Launch_anim(menus[1], "leave"));
+		chosen_menu.RemoveAt(chosen_menu.Count - 1);
 	}
 
 	public void		Quit_press()
@@ -121,7 +147,16 @@ public class 						Manage_Menu : MonoBehaviour
 
 	public void		Play_press()
 	{
-		Application.LoadLevel(1);
+		/*
+		**	We make menu leave and play select come
+		**	Don't forget to push the last two menus
+		*/
+
+		int[]		plays = new int[] {0, 2};
+
+		chosen_menu.Add(plays);
+		StartCoroutine(Launch_anim(0, "leave"));
+		StartCoroutine(Launch_anim(2, "come"));
 	}
 
 	public void		Change_volume()
@@ -135,15 +170,19 @@ public class 						Manage_Menu : MonoBehaviour
 	{
 		int			i;
 		Animator	my_anim;
+		int			len;
 
-		i = 0;
-		while (i < array[which_one].Length)
+		if (which_one == -1)
+		{
+			Levels.SetActive(false);
+			yield return(0);
+		}
+		for (i = 0, len = array[which_one].Length; i < len; i++)
 		{
 			my_anim = array[which_one][i].GetComponent<Animator>();
 			my_anim.SetBool(var, true);
 			yield return new WaitForSeconds(0.2f);
 			my_anim.SetBool(var, false);
-			i = i + 1;
 		}
 	}
 
