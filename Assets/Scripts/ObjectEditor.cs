@@ -35,7 +35,7 @@ public class ObjectEditor : MonoBehaviour {
 
 	void OnMouseDrag()
 	{
-		if ( editor.currentMode != (byte) LevelEditor.EditingState.MODE_SELECT )
+		if ( editor.currentMode != (byte) LevelEditor.EditingState.MODE_SELECT || editor.objectSelected != null )
 			return;
 
 		this.transform.position = Camera.main.ScreenToWorldPoint( Input.mousePosition ) + new Vector3( 0, 0, -Camera.main.transform.position.z );

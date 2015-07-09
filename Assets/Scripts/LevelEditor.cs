@@ -23,14 +23,17 @@ public class LevelEditor : MonoBehaviour {
 	public int objectLimit;
 	[HideInInspector]
 	public bool canSpawnObject;
+	[HideInInspector]
+	public byte currentMode;
 
 	GameObject currentTool;
 	GameObject go;
 	int objectCount;
 	bool isToolBarHidden;
 	float toolBarInitialPosition;
-	[HideInInspector]
-	public byte currentMode;
+
+	private List<GameObject> buttonList = new List<GameObject>();
+	private List<GameObject> ObjectList = new List<GameObject>();
 
 	public enum EditingState : byte
 	{
@@ -38,8 +41,6 @@ public class LevelEditor : MonoBehaviour {
 		MODE_SELECT,
 		MODE_MOVE
 	}
-	
-	private List<GameObject> ObjectList = new List<GameObject>();
 
 	void Start () 
 	{
@@ -48,6 +49,12 @@ public class LevelEditor : MonoBehaviour {
 		objectCount = 0;
 		toolBarInitialPosition = toolBar.transform.position.x;
 		currentMode = (byte) EditingState.MODE_MOVE;
+
+		for ( int i = 0; i < toolBar.transform.childCount; i++ )
+		{
+			buttonList.Add( toolBar.transform.GetChild( i ).gameObject );
+		}
+		Debug.Log( buttonList.Count );
 	}
 	
 	void LateUpdate () 
